@@ -21,7 +21,7 @@ def present(x,a):
 def wrong_position(x,a):
     flag=0
     for b in a:
-        if(a[b]==x[b]):
+        if(x[b] in a[b]):
             flag= flag+1
     return flag
 
@@ -50,15 +50,18 @@ if __name__ == '__main__':
             wordle.add(x)
     print(len(wordle))
     wordle1=set(wordle)
+    np={'r','i','s','e'}
+    p={'a'}
+    wp={0:{'a'},1:{},2:{},3:{},4:{}}
+    rp={}
     for y in wordle:
              x=y
              x.lower()
              flag=0
-             flag=flag+not_present(x, {'r','i','t','c','l','o','n'})
-             flag=flag+present(x, {'a','e','s'})
-             flag=flag+wrong_position(x, {0:'',1:'',2:'',3:'',4:'e'})
-             flag=flag+wrong_position(x, {0:'',1:'',2:'',3:'',4:'s'})
-             flag=flag+right_position(x, {0:'a'})
+             flag=flag+not_present(x, np)
+             flag=flag+present(x, p)
+             flag=flag+wrong_position(x,wp)
+             flag=flag+right_position(x, rp)
              if (flag>0):
                  wordle1.remove(x)
     print(len(wordle1))   
